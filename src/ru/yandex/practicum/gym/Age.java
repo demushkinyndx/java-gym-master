@@ -10,5 +10,7 @@ public enum Age {
         this.title = title;
     }
 
-    public String getTitle() { return this.title; }
+    public String getTitle() {
+        return this.title;
+    }
 }
