@@ -5,11 +5,11 @@ import java.util.Objects;
 public class Coach {
 
     //фамилия
-    private String surname;
+    private final String surname;
     //имя
-    private String name;
+    private final String name;
     //отчество
-    private String middleName;
+    private final String middleName;
 
     public Coach(String surname, String name, String middleName) {
         this.surname = surname;
@@ -32,6 +32,11 @@ public class Coach {
 
     public String getSurname() {
         return surname;
+    }
+
+    @Override
+    public String toString() {
+        return this.surname + " " + this.name + " " + middleName;
     }
 
     public String getName() {
