@@ -1,7 +1,6 @@
 package ru.yandex.practicum.gym;
 
 import ru.yandex.practicum.gym.exception.CoachIsBusyException;
-import ru.yandex.practicum.gym.exception.GroupAgeComparsionException;
 import ru.yandex.practicum.gym.exception.TrainingException;
 
 import java.util.*;
