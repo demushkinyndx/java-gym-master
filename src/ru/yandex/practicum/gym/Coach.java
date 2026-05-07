@@ -36,7 +36,7 @@ public class Coach {
 
     @Override
     public String toString() {
-        return this.surname + " " + this.name + " " + middleName;
+        return surname + " " + name + " " + middleName;
     }
 
     public String getName() {

@@ -11,7 +11,7 @@ public class App {
     private final Timetable timetable;
 
     public App() {
-        this.timetable = new Timetable();
+        timetable = new Timetable();
     }
 
 
@@ -25,16 +25,16 @@ public class App {
             int command = InputHandler.getInt("Введите команду:");
             switch (command) {
                 case 1:
-                    this.addTrainingSession();
+                    addTrainingSession();
                     break;
                 case 2:
-                    this.getTrainingSessionsForDay();
+                    getTrainingSessionsForDay();
                     break;
                 case 3:
-                    this.getTrainingSessionsForDayAndTime();
+                    getTrainingSessionsForDayAndTime();
                     break;
                 case 4:
-                    this.displayCouchesStats();
+                    displayCouchesStats();
                     break;
                 case 0:
                     System.out.println("До свидания!");
@@ -47,15 +47,15 @@ public class App {
     }
 
     private void displayCouchesStats() {
-        for (CounterOfTrainings stats : this.timetable.getCountByCoaches()) {
+        for (CounterOfTrainings stats : timetable.getCountByCoaches()) {
             System.out.println(stats);
         }
     }
 
     private void getTrainingSessionsForDayAndTime() {
-        DayOfWeek dayOfWeek = this.readDayOfWeekInput();
-        TimeOfDay timeOfDay = this.readTimeOfDayInput();
-        ArrayList<TrainingSession> trainingSessions = this.timetable.getTrainingSessionsForDayAndTime(dayOfWeek, timeOfDay);
+        DayOfWeek dayOfWeek = readDayOfWeekInput();
+        TimeOfDay timeOfDay = readTimeOfDayInput();
+        ArrayList<TrainingSession> trainingSessions = timetable.getTrainingSessionsForDayAndTime(dayOfWeek, timeOfDay);
         if (trainingSessions == null) {
             System.out.println("Вы выбранное время тренировок нет");
             return;
@@ -96,9 +96,9 @@ public class App {
     }
 
     private void getTrainingSessionsForDay() {
-        DayOfWeek dayOfWeek = this.readDayOfWeekInput();
+        DayOfWeek dayOfWeek = readDayOfWeekInput();
 
-        TreeMap<TimeOfDay, ArrayList<TrainingSession>> dailyTrainings = this.timetable.getTrainingSessionsForDay(dayOfWeek);
+        TreeMap<TimeOfDay, ArrayList<TrainingSession>> dailyTrainings = timetable.getTrainingSessionsForDay(dayOfWeek);
         if (dailyTrainings == null) {
             System.out.println("В выбранный день тренировок не запланировано");
             return;
@@ -113,8 +113,8 @@ public class App {
 
     private void addTrainingSession() {
         System.out.println("Добавление новой тренировки.");
-        DayOfWeek dayOfWeek = this.readDayOfWeekInput();
-        TimeOfDay timeOfDay = this.readTimeOfDayInput();
+        DayOfWeek dayOfWeek = readDayOfWeekInput();
+        TimeOfDay timeOfDay = readTimeOfDayInput();
         System.out.println();
 
         int groupNumber = InputHandler.getIntInRange("Введите тип группы (1 - дети, 2 - взрослые)", 1, 2);
@@ -126,11 +126,11 @@ public class App {
         Group group = new Group(groupTitle, age, duration);
 
         System.out.println("Введите данные тренера (ФИО)");
-        Coach coach = this.readCoachInput();
+        Coach coach = readCoachInput();
 
         TrainingSession trainingSession = new TrainingSession(group, coach, dayOfWeek, timeOfDay);
         try {
-            this.timetable.addNewTrainingSession(trainingSession);
+            timetable.addNewTrainingSession(trainingSession);
         } catch (TrainingException e) {
             System.out.println("Запись не добавлена." + e.getMessage());
         }

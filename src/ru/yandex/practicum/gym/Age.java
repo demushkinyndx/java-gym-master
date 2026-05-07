@@ -11,6 +11,6 @@ public enum Age {
     }
 
     public String getTitle() {
-        return this.title;
+        return title;
     }
 }
