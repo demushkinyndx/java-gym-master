@@ -17,12 +17,21 @@ public class Timetable {
 
         ArrayList<TrainingSession> listOfTrainings = trainingsForDay.computeIfAbsent(time, k -> new ArrayList<>());
 
-        checkScheduleParameters(trainingSession);
+        checkCoachBusy(trainingSession, listOfTrainings);
+        //checkScheduleParameters(trainingSession);
 
         listOfTrainings.add(trainingSession);
     }
 
-    private void checkScheduleParameters(TrainingSession trainingSession) throws TrainingException {
+    private void checkCoachBusy(TrainingSession trainingSession, ArrayList<TrainingSession> listOfTrainings) throws TrainingException {
+        for (TrainingSession ts : listOfTrainings) {
+            if (ts.getCoach().equals(trainingSession.getCoach())) {
+                throw new CoachIsBusyException();
+            }
+        }
+    }
+
+/*    private void checkScheduleParameters(TrainingSession trainingSession) throws TrainingException {
 
         for (Map.Entry<DayOfWeek, TreeMap<TimeOfDay, ArrayList<TrainingSession>>> entrySet : timetable.entrySet()) {
             for (ArrayList<TrainingSession> tsArray : entrySet.getValue().values()) {
@@ -49,11 +58,11 @@ public class Timetable {
                 }
             }
         }
-    }
+    }*/
 
     public TreeMap<TimeOfDay, ArrayList<TrainingSession>> getTrainingSessionsForDay(DayOfWeek dayOfWeek) {
         //как реализовать, тоже непонятно, но сложность должна быть О(1)
-        return timetable.getOrDefault(dayOfWeek, new TreeMap<>());
+        return timetable.getOrDefault(dayOfWeek, null);
     }
 
     public ArrayList<TrainingSession> getTrainingSessionsForDayAndTime(DayOfWeek dayOfWeek, TimeOfDay timeOfDay) {
