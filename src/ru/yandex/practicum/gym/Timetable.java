@@ -61,12 +61,10 @@ public class Timetable {
     }*/
 
     public TreeMap<TimeOfDay, ArrayList<TrainingSession>> getTrainingSessionsForDay(DayOfWeek dayOfWeek) {
-        //как реализовать, тоже непонятно, но сложность должна быть О(1)
         return timetable.getOrDefault(dayOfWeek, null);
     }
 
     public ArrayList<TrainingSession> getTrainingSessionsForDayAndTime(DayOfWeek dayOfWeek, TimeOfDay timeOfDay) {
-        //как реализовать, тоже непонятно, но сложность должна быть О(1)
         if (!timetable.containsKey(dayOfWeek)) {
             //нет тренировок в этот день
             return null;
