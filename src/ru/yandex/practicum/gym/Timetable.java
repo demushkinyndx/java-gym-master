@@ -14,7 +14,6 @@ public class Timetable {
         DayOfWeek dayOfWeek = trainingSession.getDayOfWeek();
         TimeOfDay time = trainingSession.getTimeOfDay();
         TreeMap<TimeOfDay, ArrayList<TrainingSession>> trainingsForDay = this.timetable.computeIfAbsent(dayOfWeek, k -> new TreeMap<>());
-        this.timetable.put(dayOfWeek, trainingsForDay);
 
         ArrayList<TrainingSession> listOfTrainings = trainingsForDay.computeIfAbsent(time, k -> new ArrayList<>());
 
