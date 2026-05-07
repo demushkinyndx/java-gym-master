@@ -62,11 +62,6 @@ public class Timetable {
             //нет тренировок в этот день
             return null;
         }
-
-        if (!timetable.get(dayOfWeek).containsKey(timeOfDay)) {
-            //в выбранное время нет тренировок
-            return null;
-        }
         return timetable.get(dayOfWeek).get(timeOfDay);
     }
 
