@@ -53,7 +53,7 @@ public class Timetable {
 
     public TreeMap<TimeOfDay, ArrayList<TrainingSession>> getTrainingSessionsForDay(DayOfWeek dayOfWeek) {
         //как реализовать, тоже непонятно, но сложность должна быть О(1)
-        return timetable.computeIfAbsent(dayOfWeek, k -> null);
+        return timetable.getOrDefault(dayOfWeek, new TreeMap<>());
     }
 
     public ArrayList<TrainingSession> getTrainingSessionsForDayAndTime(DayOfWeek dayOfWeek, TimeOfDay timeOfDay) {
